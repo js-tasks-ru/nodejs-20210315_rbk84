@@ -10,7 +10,6 @@ class LimitSizeStream extends stream.Transform {
   }
 
   _transform(chunk, encoding, callback) {
-    const data = chunk.toString();
     const size = chunk.length;
 
     if (this._totalSize + size > this._limit) {
@@ -18,7 +17,7 @@ class LimitSizeStream extends stream.Transform {
       callback(error);
     } else {
       this._totalSize += size;
-      callback(null, data);
+      callback(null, chunk);
     }
   }
 }
