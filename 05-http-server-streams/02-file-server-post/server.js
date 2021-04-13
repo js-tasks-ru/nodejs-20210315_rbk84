@@ -27,7 +27,6 @@ server.on('request', (req, res) => {
           .pipe(writeStream);
 
       writeStream.on('error', (error) => {
-        writeStream.destroy();
         if (error.code === 'EEXIST') {
           res.statusCode = 409;
           res.end('File already exists');
